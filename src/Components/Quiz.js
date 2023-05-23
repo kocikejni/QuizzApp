@@ -4,19 +4,19 @@ import { QuizContext } from "../Helpers/Contexts";
 
 const Quiz = () => {
   const { score, setScore } = useContext(QuizContext);
-  const { gameState, setGameState } = useContext(QuizContext);
+  const { setGameState } = useContext(QuizContext);
   const [currentQuestion, setCurrentQueston] = useState(0);
   const [optionChoosen, setOptionChoosen] = useState("");
 
   const nextQuesion = () => {
-    if (Questions[currentQuestion].answer == optionChoosen) {
+    if (Questions[currentQuestion].answer === optionChoosen) {
       setScore(score + 1);
     }
     setCurrentQueston(currentQuestion + 1);
   };
 
   const finishGame = () => {
-    if (Questions[currentQuestion].answer == optionChoosen) {
+    if (Questions[currentQuestion].answer === optionChoosen) {
       setScore(score + 1);
     }
     setGameState("endScreen");
@@ -39,7 +39,7 @@ const Quiz = () => {
           {Questions[currentQuestion].optionD}
         </button>
       </div>
-      {currentQuestion == Questions.length - 1 ? (
+      {currentQuestion === Questions.length - 1 ? (
         <button onClick={finishGame}>Finish Quiz</button>
       ) : (
         <button onClick={nextQuesion}>Next Question</button>
